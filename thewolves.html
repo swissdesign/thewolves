@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wolves — Certification. Access. Identity.</title>
+    <meta name="description" content="A global certification, recognition, and identity system for the world's most elite ski instructors.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        /* Custom Styles & Overrides */
+        body {
+            background-color: #000000;
+            color: #EAEAEA;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* WebGL Canvas for background */
+        #webgl-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.25; /* Slightly increased opacity for better effect visibility */
+        }
+
+        /* Serif font for the creed */
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Glassmorphism for the form */
+        .glass-form {
+            background: rgba(10, 10, 10, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Focus state for accessibility */
+        .focusable:focus-visible {
+            outline: 2px solid #A0A0A0;
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        /* Scroll-triggered text mask animation */
+        .text-reveal {
+            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+        }
+
+        /* Hide scrollbar but allow scrolling */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- WebGL Background Canvas -->
+    <div id="webgl-canvas"></div>
+
+    <!-- Main Content Wrapper -->
+    <div class="relative z-10">
+
+        <!-- 1. Hero Section — “The Signal” -->
+        <header id="hero" class="h-screen w-screen flex flex-col items-center justify-center text-center p-4 relative">
+            <div id="logo-container" class="w-24 h-24 md:w-32 md:h-32 mb-8 opacity-0">
+                <svg id="wolf-logo" viewBox="0 0 100 100" class="w-full h-full" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- Wolf head outline -->
+                    <path d="M50 10 L85 35 L80 60 L65 55 L60 80 L50 90 L40 80 L35 55 L20 60 L15 35 Z" />
+                    <!-- Eyes -->
+                    <circle id="left-eye" cx="40" cy="45" r="2" fill="white" opacity="0"/>
+                    <circle id="right-eye" cx="60" cy="45" r="2" fill="white" opacity="0"/>
+                    <!-- Snout lines -->
+                    <path d="M50 70 V 90"/>
+                    <path d="M45 65 L50 70 L55 65"/>
+                </svg>
+            </div>
+            <h1 id="hero-headline" class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white opacity-0">The Wolves.</h1>
+            <p id="hero-subheadline" class="text-lg md:text-xl lg:text-2xl text-gray-300 mt-4 tracking-wider opacity-0">Certification. Access. Identity.</p>
+            <a href="#application" id="hero-cta" class="focusable mt-12 px-8 py-3 bg-white text-black font-semibold rounded-lg transition-transform duration-300 hover:scale-105 opacity-0">
+                Apply to Join
+            </a>
+        </header>
+
+        <!-- 2. What We Are -->
+        <section id="what-we-are" class="min-h-screen container mx-auto px-6 flex items-center justify-center">
+            <div class="text-center max-w-4xl space-y-6 md:space-y-8">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl leading-tight font-medium text-gray-200">
+                    <span class="text-reveal-wrapper inline-block"><span class="text-reveal">A global certification for the best instructors on Earth.</span></span>
+                </h2>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl leading-tight font-medium text-gray-200">
+                    <span class="text-reveal-wrapper inline-block"><span class="text-reveal">A network that opens international work opportunities.</span></span>
+                </h2>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl leading-tight font-medium text-gray-200">
+                    <span class="text-reveal-wrapper inline-block"><span class="text-reveal">A digital identity you’ll never have to explain twice.</span></span>
+                </h2>
+            </div>
+        </section>
+
+        <!-- 3. Who Qualifies -->
+        <section id="who-qualifies" class="py-24 md:py-32 bg-black">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-16 text-white">Minimum Qualifications</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12">
+                    <!-- Item 1 -->
+                    <div class="qual-item opacity-0">
+                        <div class="flex justify-center items-center h-20 mb-4">
+                            <svg class="w-16 h-16 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white">Full National Certification</h3>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="qual-item opacity-0">
+                        <div class="flex justify-center items-center h-20 mb-4">
+                            <svg class="w-16 h-16 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white">5+ Winters Experience</h3>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="qual-item opacity-0">
+                        <div class="flex justify-center items-center h-20 mb-4">
+                           <svg class="w-16 h-16 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9.5A18.034 18.034 0 019 18.5m-1.002-6.086a60.023 60.023 0 01-.498-2.264M12 18a9 9 0 100-18 9 9 0 000 18z"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white">2+ Languages Fluent</h3>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="qual-item opacity-0">
+                        <div class="flex justify-center items-center h-20 mb-4">
+                            <svg class="w-16 h-16 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white">VIP Client Handling</h3>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="qual-item opacity-0">
+                        <div class="flex justify-center items-center h-20 mb-4">
+                            <svg class="w-16 h-16 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white">Professional Discretion</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Why We Exist (Scroll Narrative) -->
+        <section id="why-we-exist" class="min-h-screen">
+            <div id="pin-container" class="h-screen w-full">
+                <div class="pin-content-wrapper h-full w-full flex items-center justify-center">
+                    <div class="max-w-2xl text-center p-8">
+                        <div class="narrative-text text-3xl md:text-4xl lg:text-5xl font-medium text-gray-300 leading-snug">
+                            <p class="narrative-line opacity-0">You’ve worked heli tours, private guests, multiple systems.</p>
+                            <p class="narrative-line opacity-0 mt-8">Still, every border resets your value to zero.</p>
+                            <p class="narrative-line opacity-0 mt-8">New country. New system. No recognition.</p>
+                            <p class="narrative-line opacity-0 mt-16 text-white font-bold">That ends now.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Visa Access Section -->
+        <section id="visa-access" class="py-24 md:py-40 bg-black relative overflow-hidden">
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">Work anywhere the snow falls.</h2>
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+                    Visa guidance through official partnerships. Recommendation letters. Placement priority in global resorts. No middlemen. Just mobility.
+                </p>
+            </div>
+            <!-- Background map/glow effect can be added here -->
+        </section>
+
+        <!-- 6. The Wolves Code -->
+        <section id="wolves-code" class="min-h-screen flex items-center justify-center bg-black">
+            <div class="text-center max-w-4xl mx-auto px-6 space-y-12">
+                <p class="code-line font-serif text-3xl md:text-4xl lg:text-5xl text-gray-400 opacity-0">A Wolf is not loud.</p>
+                <p class="code-line font-serif text-3xl md:text-4xl lg:text-5xl text-gray-400 opacity-0">A Wolf is not common.</p>
+                <p class="code-line font-serif text-3xl md:text-4xl lg:text-5xl text-gray-400 opacity-0">A Wolf is known by how they move.</p>
+                <p class="code-line font-serif text-3xl md:text-4xl lg:text-5xl text-white opacity-0">We are trusted by those who matter.</p>
+                <p class="code-line font-serif text-3xl md:text-4xl lg:text-5xl text-gray-400 opacity-0">We are not for everyone.</p>
+                <p class="code-line font-serif text-3xl md:text-4xl lg:text-5xl text-white opacity-0">Only the few.</p>
+            </div>
+        </section>
+
+        <!-- 7. Application Form -->
+        <section id="application" class="py-24 md:py-32 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="max-w-xl mx-auto text-center mb-12">
+                     <h2 class="text-4xl md:text-5xl font-bold text-white">Join The Wolves</h2>
+                     <p class="text-gray-400 mt-4">This is not a course. This is a recognition. Only qualified candidates will be contacted.</p>
+                </div>
+                <form id="application-form" action="https://api.web3forms.com/submit" method="POST" class="glass-form max-w-xl mx-auto p-8 md:p-12 rounded-2xl space-y-6">
+                    <!-- Replace with your own Web3Forms or other form backend key -->
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                    <input type="hidden" name="subject" value="New Application - The Wolves">
+                    <input type="hidden" name="from_name" value="The Wolves Website">
+
+                    <div>
+                        <label for="name" class="sr-only">Full Name</label>
+                        <input type="text" name="name" id="name" placeholder="Full Name" required class="focusable w-full bg-transparent border-b border-gray-600 text-white placeholder-gray-500 py-3 focus:border-white transition-colors duration-300">
+                    </div>
+                    <div>
+                        <label for="certification" class="sr-only">Country of Certification</label>
+                        <input type="text" name="certification" id="certification" placeholder="Country of Certification (e.g., CSIA, PSIA, BASI)" required class="focusable w-full bg-transparent border-b border-gray-600 text-white placeholder-gray-500 py-3 focus:border-white transition-colors duration-300">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="seasons" class="sr-only">Seasons Taught</label>
+                            <input type="number" name="seasons" id="seasons" placeholder="Seasons Taught" required class="focusable w-full bg-transparent border-b border-gray-600 text-white placeholder-gray-500 py-3 focus:border-white transition-colors duration-300">
+                        </div>
+                        <div>
+                            <label for="languages" class="sr-only">Languages</label>
+                            <input type="text" name="languages" id="languages" placeholder="Languages (Fluent)" required class="focusable w-full bg-transparent border-b border-gray-600 text-white placeholder-gray-500 py-3 focus:border-white transition-colors duration-300">
+                        </div>
+                    </div>
+                     <div>
+                        <label for="profile" class="sr-only">Optional Profile Link</label>
+                        <input type="url" name="profile" id="profile" placeholder="Optional Profile Link (LinkedIn, etc.)" class="focusable w-full bg-transparent border-b border-gray-600 text-white placeholder-gray-500 py-3 focus:border-white transition-colors duration-300">
+                    </div>
+                    <div>
+                        <label for="email" class="sr-only">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Email Address" required class="focusable w-full bg-transparent border-b border-gray-600 text-white placeholder-gray-500 py-3 focus:border-white transition-colors duration-300">
+                    </div>
+                    <div class="pt-4">
+                        <button type="submit" id="submit-btn" class="focusable w-full py-4 bg-white text-black font-bold rounded-lg transition-all duration-300 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-wait">
+                            Send Application
+                        </button>
+                    </div>
+                    <div id="form-status" class="text-center mt-4 h-6"></div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 px-4">
+            <p class="text-gray-500">&copy; <span id="year"></span> The Wolves. All rights reserved. thewolves.ch</p>
+        </footer>
+    </div>
+
+    <!-- 8. Whisper Icon -->
+    <div id="whisper-container" class="fixed bottom-6 right-6 z-50">
+        <button id="whisper-btn" class="focusable p-3 rounded-full bg-gray-800/50 backdrop-blur-sm hover:bg-gray-700 transition-colors duration-300" aria-label="A message for you">
+            <span class="text-2xl">🐾</span>
+        </button>
+    </div>
+
+    <!-- Whisper Modal -->
+    <div id="whisper-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="whisper-modal-content" class="max-w-sm w-full text-center p-8 bg-black border border-gray-800 rounded-lg transform scale-95 transition-transform duration-300">
+            <p class="text-lg text-gray-300">If someone sent you this link, you’re already close.</p>
+            <button id="close-modal-btn" class="focusable mt-6 text-gray-500 hover:text-white transition-colors duration-300">Close</button>
+        </div>
+    </div>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // --- UTILITIES ---
+        const yearSpan = document.getElementById('year');
+        if (yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+
+        // --- WEBGL BACKGROUND EFFECT ---
+        let scene, camera, renderer, smokeParticles = [], snowParticles = [];
+        let clock = new THREE.Clock();
+        const canvas = document.getElementById('webgl-canvas');
+
+        function initWebGL() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+            camera.position.z = 1000;
+            scene.add(camera);
+
+            renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            canvas.appendChild(renderer.domElement);
+
+            // Lights with blue tinge
+            let ambientLight = new THREE.AmbientLight(0x0a2a40, 1); // Deep blue ambient light
+            scene.add(ambientLight);
+            let directionalLight = new THREE.DirectionalLight(0xadd8e6, 0.5); // Light blue directional
+            directionalLight.position.set(-1, 0, 1);
+            scene.add(directionalLight);
+
+            // Smoke Effect
+            let smokeTextureLoader = new THREE.TextureLoader();
+            smokeTextureLoader.load('https://s3-us-west-2.amazonaws.com/s.cdpn.io/82015/smoke.png', function(texture) {
+                let smokeGeo = new THREE.PlaneGeometry(300, 300);
+                let smokeMaterial = new THREE.MeshLambertMaterial({
+                    map: texture,
+                    transparent: true,
+                    opacity: 0.6
+                });
+
+                for (let p = 0; p < 150; p++) {
+                    let particle = new THREE.Mesh(smokeGeo, smokeMaterial);
+                    particle.position.set(
+                        Math.random() * 500 - 250,
+                        Math.random() * 500 - 250,
+                        Math.random() * 1000 - 100
+                    );
+                    particle.rotation.z = Math.random() * 360;
+                    scene.add(particle);
+                    smokeParticles.push(particle);
+                }
+            });
+            
+            // Snow Effect
+            let snowGeo = new THREE.BufferGeometry();
+            const snowVertices = [];
+            let snowMaterial = new THREE.PointsMaterial({
+                color: 0xffffff,
+                size: 1.5,
+                transparent: true,
+                opacity: 0.7
+            });
+
+            for (let i = 0; i < 800; i++) {
+                const x = Math.random() * 2000 - 1000;
+                const y = Math.random() * 2000 - 1000;
+                const z = Math.random() * 2000 - 1000;
+                snowVertices.push(x, y, z);
+            }
+            snowGeo.setAttribute('position', new THREE.Float32BufferAttribute(snowVertices, 3));
+            let snow = new THREE.Points(snowGeo, snowMaterial);
+            scene.add(snow);
+            snowParticles.push(snow);
+
+
+            window.addEventListener('resize', onWindowResize, false);
+            animateWebGL();
+        }
+
+        function animateWebGL() {
+            if (document.hidden) { // Pause animation when tab is not visible
+                requestAnimationFrame(animateWebGL);
+                return;
+            }
+            
+            let delta = clock.getDelta();
+
+            // Animate smoke
+            smokeParticles.forEach(p => {
+                p.rotation.z += (delta * 0.1);
+            });
+
+            // Animate snow
+            snowParticles.forEach(p => {
+                p.rotation.y -= (delta * 0.05);
+                const positions = p.geometry.attributes.position.array;
+                for (let i = 1; i < positions.length; i += 3) {
+                    positions[i] -= 0.5; // Fall speed
+                    if (positions[i] < -1000) {
+                        positions[i] = 1000; // Reset to top
+                    }
+                }
+                p.geometry.attributes.position.needsUpdate = true;
+            });
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(animateWebGL);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // --- GSAP ANIMATIONS ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Hero Section Animation
+        const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        heroTimeline
+            .to("#logo-container", { opacity: 1, duration: 1.5, delay: 0.5 })
+            .to("#hero-headline", { opacity: 1, y: 0, duration: 1 }, "-=1.0")
+            .to("#hero-subheadline", { opacity: 1, y: 0, duration: 1 }, "-=0.7")
+            .to("#hero-cta", { opacity: 1, y: 0, duration: 1 }, "-=0.7");
+        
+        // Wolf Logo Animation
+        const logoSVG = document.getElementById('wolf-logo');
+        const logoPaths = logoSVG.querySelectorAll('path');
+        const leftEye = document.getElementById('left-eye');
+        const rightEye = document.getElementById('right-eye');
+        
+        logoPaths.forEach(path => {
+            const length = path.getTotalLength();
+            path.style.strokeDasharray = length;
+            path.style.strokeDashoffset = length;
+        });
+
+        gsap.to(logoPaths, {
+            strokeDashoffset: 0,
+            duration: 2.5,
+            ease: 'power2.inOut',
+            delay: 0.7
+        });
+        gsap.to([leftEye, rightEye], {
+            opacity: 1,
+            duration: 0.2,
+            delay: 2.8,
+            repeat: 3,
+            yoyo: true,
+            repeatDelay: 1.5
+        });
+
+
+        // 2. What We Are - Text Reveal
+        gsap.utils.toArray('.text-reveal').forEach(text => {
+            gsap.fromTo(text, 
+                { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)', y: '20px' },
+                {
+                    clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+                    y: '0px',
+                    duration: 1.2,
+                    ease: 'power4.out',
+                    scrollTrigger: {
+                        trigger: text,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
+
+        // 3. Who Qualifies - Staggered Item Reveal
+        gsap.from(".qual-item", {
+            scrollTrigger: {
+                trigger: "#who-qualifies",
+                start: "top 70%",
+                toggleActions: "play none none none",
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // 4. Why We Exist - Pinned Scroll Narrative
+        const narrativeLines = gsap.utils.toArray('.narrative-line');
+        const tlNarrative = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#pin-container",
+                pin: true,
+                scrub: 1,
+                start: "top top",
+                end: "+=2000"
+            }
+        });
+
+        narrativeLines.forEach((line, index) => {
+            tlNarrative.to(line, { opacity: 1 }, index * 0.5);
+            tlNarrative.to(line, { opacity: 0.3 }, (index * 0.5) + 0.4);
+        });
+        tlNarrative.to(narrativeLines[narrativeLines.length - 1], { opacity: 1 });
+
+
+        // 6. The Wolves Code - Line by Line Reveal
+        gsap.utils.toArray('.code-line').forEach(line => {
+            gsap.to(line, {
+                opacity: 1,
+                duration: 1.5,
+                ease: 'power2.inOut',
+                scrollTrigger: {
+                    trigger: line,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // --- FORM HANDLING ---
+        const form = document.getElementById('application-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const formStatus = document.getElementById('form-status');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            formStatus.textContent = '';
+
+            const formData = new FormData(form);
+            const object = {};
+            formData.forEach((value, key) => object[key] = value);
+            
+            // IMPORTANT: Replace YOUR_ACCESS_KEY_HERE in the HTML with your actual key from web3forms.com
+            if (object.access_key === "YOUR_ACCESS_KEY_HERE") {
+                formStatus.textContent = "Please configure form access key.";
+                formStatus.style.color = "yellow";
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Application';
+                return;
+            }
+
+            const json = JSON.stringify(object);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    formStatus.textContent = "Application sent successfully.";
+                    formStatus.style.color = "lightgreen";
+                    form.reset();
+                } else {
+                    formStatus.textContent = "An error occurred. Please try again.";
+                    formStatus.style.color = "pink";
+                }
+            } catch (error) {
+                formStatus.textContent = "An error occurred. Please try again.";
+                formStatus.style.color = "pink";
+            } finally {
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Application';
+                    formStatus.textContent = '';
+                }, 4000);
+            }
+        });
+
+        // --- WHISPER MODAL ---
+        const whisperBtn = document.getElementById('whisper-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const whisperModal = document.getElementById('whisper-modal');
+        const whisperModalContent = document.getElementById('whisper-modal-content');
+
+        function openModal() {
+            whisperModal.classList.remove('pointer-events-none', 'opacity-0');
+            whisperModalContent.classList.remove('scale-95');
+        }
+
+        function closeModal() {
+            whisperModal.classList.add('opacity-0');
+            whisperModalContent.classList.add('scale-95');
+            setTimeout(() => {
+                whisperModal.classList.add('pointer-events-none');
+            }, 300); // Match transition duration
+        }
+
+        whisperBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        whisperModal.addEventListener('click', (e) => {
+            if (e.target === whisperModal) {
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Initialize WebGL only if not preferring reduced motion
+        const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (!mediaQuery.matches) {
+            initWebGL();
+        } else {
+            console.log("Reduced motion is preferred. WebGL background disabled.");
+        }
+    });
+    </script>
+</body>
+</html>
