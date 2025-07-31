@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://thewolves.ch/sitemap.xml
