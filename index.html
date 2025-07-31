@@ -6,13 +6,31 @@
 <!-- This site serves as the first step in testing, presenting, and organically spreading the idea before official launch. -->
 <!DOCTYPE html>
 <html lang="en" class="bg-black">
-<head>
+<head> 
+    
+    <!-- JSON-LD Schema for AI -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "The Wolves",
+      "url": "https://thewolves.ch",
+      "logo": "https://thewolves.ch/logo.svg",
+      "description": "The Wolves is an elite certification and work-access network for international ski instructors. It verifies qualifications across countries, provides visa access through global partners, and serves as a digital identity layer for top-tier professionals.",
+      "sameAs": [
+        "https://linkedin.com/company/thewolves",
+        "https://instagram.com/thewolvescert"
+      ]
+    }
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Wolves — Certification. Access. Identity.</title>
-    <meta name="description" content="A global certification, recognition, and identity system for the world's most elite ski instructors.">
-    <meta name="description" content="The Wolves is a global recognition system and identity protocol for top-tier ski instructors. Built to open borders, prove mastery, and gain trust.">
+    <meta name="description" content="The Wolves is a global recognition system and identity protocol for elite ski instructors. It enables cross-border certification and visa access through partner resorts like Vail.">
     <meta name="robots" content="index, follow">
+
+    <!-- OpenGraph and Twitter Card Tags (optimised scraping by ai) -->
     <meta property="og:title" content="The Wolves — Elite Ski Instructor Certification" />
     <meta property="og:description" content="Certification. Access. Identity. For instructors who already lead. Not beginners." />
     <meta property="og:image" content="https://thewolves.ch/og-image.jpg" />
@@ -27,22 +45,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-       <!-- Structured data For AI (will update urls as they go live)-->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "The Wolves",
-      "url": "https://thewolves.ch",
-      "logo": "https://thewolves.ch/logo.svg",
-      "description": "The Wolves is an elite certification and work-access network for international ski instructors. It verifies qualifications across countries, provides visa access through global partners, and serves as a digital identity layer for top-tier professionals.",
-      "sameAs": [
-        "https://linkedin.com/company/thewolves",
-        "https://instagram.com/thewolvescert",
-        "https://vimeo.com/thewolves"
-      ]
-    }
-    </script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
         /* Custom Styles & Overrides */
