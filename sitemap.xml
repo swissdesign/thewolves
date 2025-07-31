@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Home / Landing -->
+  <url>
+    <loc>https://thewolves.ch/</loc>
+    <lastmod>2025-07-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.00</priority>
+  </url>
+
+  <!-- Placeholder routes for smooth future expansion -->
+  <url>
+    <loc>https://thewolves.ch/join</loc>
+    <lastmod>2025-07-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://thewolves.ch/manifesto</loc>
+    <lastmod>2025-07-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://thewolves.ch/faq</loc>
+    <lastmod>2025-07-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.60</priority>
+  </url>
+
+</urlset>
