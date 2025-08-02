@@ -541,7 +541,7 @@
         const formStatus = document.getElementById('form-status');
         
         // PASTE YOUR GOOGLE APPS SCRIPT URL HERE
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyLZ6V8fkgeGE8Yy5HsYK2C1u8Ueno1sN7IV1ZBi3Z1y7tXj4ezIt8BYF7MREBrNmYi/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbywmwr93PTv9eYuRmd0AFHq3WUd-X62StBMfbrraw3ZFcBmaP6F4QkcfhoaQtf5Ty8lp/exec';';
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -554,7 +554,7 @@
             formData.forEach((value, key) => object[key] = value);
             const json = JSON.stringify(object);
             
-            if (scriptURL === 'https://script.google.com/macros/s/AKfycbyLZ6V8fkgeGE8Yy5HsYK2C1u8Ueno1sN7IV1ZBi3Z1y7tXj4ezIt8BYF7MREBrNmYi/exec') {
+            if (scriptURL === 'https://script.google.com/macros/s/AKfycbywmwr93PTv9eYuRmd0AFHq3WUd-X62StBMfbrraw3ZFcBmaP6F4QkcfhoaQtf5Ty8lp/exec') {
                 formStatus.textContent = "Please configure the script URL.";
                 formStatus.style.color = "yellow";
                 submitBtn.disabled = false;
