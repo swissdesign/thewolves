@@ -553,14 +553,6 @@
             const object = {};
             formData.forEach((value, key) => object[key] = value);
             const json = JSON.stringify(object);
-            
-            if (scriptURL === 'https://script.google.com/macros/s/AKfycbzV8LKWxtWgquLwowAwWPxBXK52OijTl3piN4NFtCzDKjPHPhLmnn6RjpK0KaQUvmo/exec') {
-                formStatus.textContent = "Please configure the script URL.";
-                formStatus.style.color = "yellow";
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send Application';
-                return;
-            }
 
             try {
                 const response = await fetch(scriptURL, {
