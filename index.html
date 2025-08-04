@@ -5,7 +5,8 @@
 <!-- The goal is to help elite instructors deliver the highest quality experiences to high-net-worth clients across borders. -->
 <!-- This site serves as the first step in testing, presenting, and organically spreading the idea before official launch. -->
 <!DOCTYPE html>
-<html lang="en" class=""> <head>
+<html lang="en" class=""> 
+<head>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -49,7 +50,7 @@
     <style>
         /* Custom Styles & Overrides */
         body {
-            /* background-color: #000000;  REMOVED this, let WebGL be the background */
+            background-color: #000000; /* Re-added black background for the body */
             color: #EAEAEA;
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
@@ -92,6 +93,12 @@
             clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
         }
 
+        /* Ensure text-reveal-wrapper behaves like a block for proper animation and content flow */
+        .text-reveal-wrapper {
+            display: block; /* Changed from inline-block to block */
+            overflow: hidden; /* Ensure anything outside clip-path is hidden */
+        }
+
         /* Hide scrollbar but allow scrolling */
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
@@ -129,10 +136,10 @@
                     <polygon points="1002.39 1690.61 1001.39 1690.07 998.75 1691.48 996.11 1690.07 995.11 1690.61 994.1 1690.07 890.84 1745.29 956.48 1754.46 994.14 1760 995.11 1759.86 996.07 1760 998.75 1759.6 1001.43 1760 1002.39 1759.86 1003.36 1760 1041.01 1754.46 1106.65 1745.29 1003.39 1690.07 1002.39 1690.61"/>
                     <path d="M999.52,557.87l-.77.63-.77-.63-36.31,30.84-204.65,166.68,204.03,176.56,36.91,33.31.79-.68.79.68,36.91-33.31,204.03-176.56-204.65-166.68-36.31-30.84ZM853.69,756.72l145.06-123.18,145.06,123.18-145.06,130.88-145.06-130.88Z"/>
                     <path d="M702.27,1476.37c.21.38.43.73.66,1.03l-.66-1.03Z"/>
-                    <path d="M448.75,1095.73c-51.82-45.07-71.81-116.96-48.9-181.71,24.71-69.83,66.18-149.36,143.04-264.64l11.01-16.51-11.35-16.27c-87.16-124.97-34.46-298.84-.9-369.75l49.49,32,108.22,211.87c2.07,3.77,7.25,10.06,9.97,13.38l88.03,118.13,57.06-50.06-68.88-91.08c-14.13-18.68-26.84-38.39-38.03-58.96l-98.58-181.27c-5.74-10.56-14-19.55-24.03-26.16l-105.33-69.47-17.79,34.77c-1.44,2.81-35.44,69.91-53.85,160.43-23.24,114.26-10.78,214.91,35.97,292.62-124.62,189.41-174.11,310.73-192.47,434.64l28.98,20.07c166.05,112.4,267.43,228.26,326.96,308.83,9.01,12.18,17.51,23.69,25.2,33.72l29.67,46.06c-6.39-11.6-1.87-57.51-22.02-106.31-15.86-38.4-106.21-165.39-231.49-274.34Z"/>
+                    <path d="M448.75,1095.73c-51.82-45.07-71.81-116.96-48.9-181.71,24.71-69.83,66.18-149.36,143.04-264.64l11.01-16.51-11.35-16.27c-87.16-124.97-34.46-298.84-.9,369.75l49.49,32,108.22,211.87c2.07,3.77,7.25,10.06,9.97-13.38l88.03,118.13,57.06-50.06-68.88-91.08c-14.13-18.68-26.84-38.39-38.03-58.96l-98.58-181.27c-5.74-10.56-14-19.55-24.03-26.16l-105.33-69.47-17.79,34.77c-1.44,2.81-35.44,69.91-53.85,160.43-23.24,114.26-10.78,214.91,35.97,292.62-124.62,189.41-174.11,310.73-192.47,434.64l28.98,20.07c166.05,112.4,267.43,228.26,326.96,308.83,9.01,12.18,17.51,23.69,25.2,33.72l29.67,46.06c-6.39-11.6-1.87-57.51-22.02-106.31-15.86-38.4-106.21-165.39-231.49-274.34Z"/>
                     <path d="M932.52,1672.07l39.05-21.69c-82.09-29.04-124.54-75.04-144.92-106.43-15.99-24.64-21.86-82.96-27.03-134.41-.66-6.59-1.34-13.25-2.03-19.91,13.87-14.02,34.67-35.42,56.07-58.86,69.3-75.89,82.12-104.06,85.55-120.12,10.74-50.29.49-177.94-32.4-240.27-33.52-63.5-109.66-104.74-164.03-130.25-7.1-3.33-13.32-6.44-19.33-9.45-29.87-14.94-51.62-25.81-126.48-40.53,38.64-51.41,84.18-94.93,123.11-116.43l25.13-13.88c-49.53-59.64-107.89-137.56-147.99-232.75-40.11-95.19,18.96,127.77,40.98,167.11,22.02,39.34,29.35,43.85,29.35,43.85-45.81,31.82-94.38,82.78-134.04,140.8-.38-.06-.73-.12-1.11-.18l-.39,2.41c-4.24,6.26-8.41,12.57-12.43,18.98-37.79,60.26-62.47,121.73-71.43,177.87-6.8,28.1,18.27,58.82,126.85,176.97,38.29,41.67,77.88,84.75,108.91,122.52,44.73,54.44,50.17,72.19,50.78,76.34,2.78,19.06,4.86,39.73,7.06,61.61,6.4,63.66,12.45,123.79,36.11,160.26,15.34,23.64,28.68,35.71,69.64,74.43,29.46,27.85,58.13,43.51,85.04,22.03ZM617.83,1115.52c-43.08-46.88-101.38-110.32-111.78-131.16,7.5-44.22,26.65-92.87,55.66-141.65,87.15,15.72,107.18,25.72,135.71,40,6.33,3.17,12.89,6.45,20.66,10.09,46.79,21.95,111.93,56.69,137.29,104.73,26.72,50.62,34.46,165.82,26.96,200.96-3.95,16.42-48.43,69.32-98.3,121.72-21.13-44.97-79.71-110.58-166.19-204.7Z"/>
                     <polygon points="897.5 540.36 899.63 543.37 998.75 485.45 1097.87 543.37 1100 540.36 1105.15 543.37 1179.71 438.06 1172.42 438.06 825.08 438.06 817.79 438.06 892.34 543.37 897.5 540.36"/>
-                    <path d="M790.55,1239.56s29.19-19.34,40.49-51.2c11.3-31.86-9.64-124.41-9.64-124.41,0,0-173.03,18.78-198.64-133.13l-43.63-14.76-13.08,38.34c-23.96,101.82,213.3,156.63,224.5,285.17Z"/>
+                    <path d="M790.55,1239.56s29.19-19.34,40.49-51.2c11.3-31.86-9.64-124.41-9.64-124.41,0,0-173.03,18.78-198.64-133.13l-43.63-14.76-13.08-38.34c-23.96,101.82,213.3,156.63,224.5,285.17Z"/>
                 </svg>
             </div>
             <h1 id="hero-headline" class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white opacity-0">The Wolves.</h1>
@@ -142,22 +149,20 @@
             </a>
         </header>
 
-        <section id="what-we-are" class="min-h-screen container mx-auto px-6 flex items-center justify-center">
-            <div class="text-center max-w-4xl space-y-6 md:space-y-8">
+        <section id="what-we-are" class="min-h-screen container mx-auto px-6 flex items-center justify-center" style="background-color: rgba(0,0,0,0.7);"> <div class="text-center max-w-4xl space-y-6 md:space-y-8">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl leading-tight font-medium text-gray-200">
-                    <span class="text-reveal-wrapper inline-block"><span class="text-reveal">A global certification for the best instructors on Earth.</span></span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal">A global certification for the best instructors on Earth.</span></span>
                 </h2>
                 <h2 class="text-3xl md:text-4xl lg:text-5xl leading-tight font-medium text-gray-200">
-                    <span class="text-reveal-wrapper inline-block"><span class="text-reveal">A network that opens international work opportunities.</span></span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal">A network that opens international work opportunities.</span></span>
                 </h2>
                 <h2 class="text-3xl md:text-4xl lg:text-5xl leading-tight font-medium text-gray-200">
-                    <span class="text-reveal-wrapper inline-block"><span class="text-reveal">A digital identity you’ll never have to explain twice.</span></span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal">A digital identity you’ll never have to explain twice.</span></span>
                 </h2>
             </div>
         </section>
 
-        <section id="who-qualifies" class="py-24 md:py-32" style="background-color: rgba(0,0,0,0.7);"> 
-            <div class="container mx-auto px-6 text-center">
+        <section id="who-qualifies" class="py-24 md:py-32" style="background-color: rgba(0,0,0,0.7);"> <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-16 text-white">Minimum Qualifications</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12">
                     <div class="qual-item opacity-0">
@@ -194,8 +199,7 @@
             </div>
         </section>
 
-        <section id="why-we-exist" class="min-h-screen">
-            <div id="pin-container" class="h-screen w-full">
+        <section id="why-we-exist" class="min-h-screen" style="background-color: rgba(0,0,0,0.7);"> <div id="pin-container" class="h-screen w-full">
                 <div class="pin-content-wrapper h-full w-full flex items-center justify-center">
                     <div class="max-w-2xl text-center p-8">
                         <div class="narrative-text text-3xl md:text-4xl lg:text-5xl font-medium text-gray-300 leading-snug">
@@ -209,8 +213,7 @@
             </div>
         </section>
 
-        <section id="visa-access" class="py-24 md:py-40 relative overflow-hidden" style="background-color: rgba(0,0,0,0.7);">
-            <div class="container mx-auto px-6 text-center relative z-10">
+        <section id="visa-access" class="py-24 md:py-40 relative overflow-hidden" style="background-color: rgba(0,0,0,0.7);"> <div class="container mx-auto px-6 text-center relative z-10">
                 <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">Work anywhere the snow falls.</h2>
                 <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
                     Visa guidance through official partnerships. Recommendation letters. Placement priority in global resorts. No middlemen. Just mobility.
@@ -218,8 +221,7 @@
             </div>
             </section>
 
-        <section id="wolves-code" class="min-h-screen flex items-center justify-center" style="background-color: rgba(0,0,0,0.7);">
-            <div class="text-center max-w-4xl mx-auto px-6 space-y-12">
+        <section id="wolves-code" class="min-h-screen flex items-center justify-center" style="background-color: rgba(0,0,0,0.7);"> <div class="text-center max-w-4xl mx-auto px-6 space-y-12">
                 <p class="code-line font-serif text-3xl md:text-4xl lg:text-5xl text-gray-400 opacity-0">A Wolf is not loud.</p>
                 <p class="code-line font-serif text-3xl md:text-4xl lg:text-5xl text-gray-400 opacity-0">A Wolf is not common.</p>
                 <p class="code-line font-serif text-3xl md:text-4xl lg:text-5xl text-gray-400 opacity-0">A Wolf is known by how they move.</p>
@@ -229,8 +231,7 @@
             </div>
         </section>
 
-        <section id="application" class="py-24 md:py-32" style="background-color: rgba(0,0,0,0.7);">
-            <div class="container mx-auto px-6">
+        <section id="application" class="py-24 md:py-32" style="background-color: rgba(0,0,0,0.7);"> <div class="container mx-auto px-6">
                 <div class="max-w-xl mx-auto text-center mb-12">
                      <h2 class="text-4xl md:text-5xl font-bold text-white">Join The Wolves</h2>
                      <p class="text-gray-400 mt-4">This is not a course. This is a recognition. Only qualified candidates will be contacted.</p>
@@ -317,7 +318,7 @@
             camera.position.z = 1000;
             scene.add(camera);
 
-            renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer = new THREE.WebGLRenderer({ alpha: true }); // alpha: true is crucial for transparency
             renderer.setSize(window.innerWidth, window.innerHeight);
             canvas.appendChild(renderer.domElement);
 
@@ -335,7 +336,7 @@
                 let smokeMaterial = new THREE.MeshLambertMaterial({
                     map: texture,
                     transparent: true,
-                    opacity: 0.6
+                    opacity: 0.6 // Increased from 0.4 for better visibility
                 });
 
                 for (let p = 0; p < 150; p++) {
@@ -356,9 +357,9 @@
             const snowVertices = [];
             let snowMaterial = new THREE.PointsMaterial({
                 color: 0xffffff,
-                size: 1.5,
+                size: 2, // Slightly increased size
                 transparent: true,
-                opacity: 0.7
+                opacity: 0.8 // Slightly increased opacity
             });
 
             for (let i = 0; i < 800; i++) {
@@ -395,7 +396,7 @@
                 p.rotation.y -= (delta * 0.05);
                 const positions = p.geometry.attributes.position.array;
                 for (let i = 1; i < positions.length; i += 3) {
-                    positions[i] -= 0.5; // Fall speed
+                    positions[i] -= 0.8; // Increased fall speed slightly
                     if (positions[i] < -1000) {
                         positions[i] = 1000; // Reset to top
                     }
@@ -444,17 +445,18 @@
         // 2. What We Are - Text Reveal
         gsap.utils.toArray('.text-reveal').forEach(text => {
             gsap.fromTo(text, 
-                // Adjusted y: '40px' to ensure it starts further down and reveals fully
-                { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)', y: '40px' }, 
+                // Adjusted y: '50px' for more clearance
+                { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)', y: '50px' }, 
                 {
                     clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
                     y: '0px',
                     duration: 1.2,
                     ease: 'power4.out',
                     scrollTrigger: {
-                        trigger: text,
+                        trigger: text.closest('h2'), // Trigger on the h2 parent for better consistency
                         start: 'top 85%',
-                        toggleActions: 'play none none none'
+                        toggleActions: 'play none none none',
+                        // markers: true, // Uncomment for debugging
                     }
                 }
             );
@@ -464,10 +466,9 @@
         gsap.from(".qual-item", {
             scrollTrigger: {
                 trigger: "#who-qualifies",
-                start: "top 70%", // This should be fine, but if not, adjust to 'top center' or 'top 80%'
+                start: "top 70%", // Adjust if needed, e.g., "top center"
                 toggleActions: "play none none none",
-                // For debugging, uncomment these:
-                // markers: true, 
+                // markers: true, // Enable for debugging to see trigger points
                 // id: "qual-items-trigger"
             },
             opacity: 0,
@@ -491,7 +492,6 @@
 
         narrativeLines.forEach((line, index) => {
             tlNarrative.to(line, { opacity: 1 }, index * 0.5);
-            // Increased the duration of the line staying visible before fading slightly
             tlNarrative.to(line, { opacity: 0.3 }, (index * 0.5) + 0.8); 
         });
         tlNarrative.to(narrativeLines[narrativeLines.length - 1], { opacity: 1 });
