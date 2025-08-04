@@ -152,7 +152,7 @@
 
         <section id="what-we-are" class="min-h-screen container mx-auto px-6 flex items-center justify-center" style="background-color: rgba(0,0,0,0.7);"> <div class="text-center max-w-4xl space-y-6 md:space-y-8">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl leading-tight font-medium text-gray-200">
-                    <span class="text-reveal-wrapper"><span class="text-reveal">A global certification for the best instructors on Earth.</span></span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal">A global certification for <br> the best instructors on Earth.</span></span>
                 </h2>
                 <h2 class="text-3xl md:text-4xl lg:text-5xl leading-tight font-medium text-gray-200">
                     <span class="text-reveal-wrapper"><span class="text-reveal">A network that opens international work opportunities.</span></span>
@@ -443,22 +443,26 @@
         });
 
 
-        // 2. What We Are - Text Reveal
+        // 2. What We Are - Text Reveal (Focus on this section)
         gsap.utils.toArray('.text-reveal').forEach(text => {
             gsap.fromTo(text, 
-                // Adjusted y: '50px' for more clearance
-                { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)', y: '50px' }, 
+                { 
+                    clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)', 
+                    y: '100%' // Start 100% of its own height below its final position
+                }, 
                 {
                     clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-                    y: '0px',
-                    duration: 1.2,
+                    y: '0%', // End at its natural position
+                    duration: 1.5, // Slightly increased duration for smoother reveal
                     ease: 'power4.out',
                     scrollTrigger: {
-                        trigger: text.closest('h2'), // Trigger on the h2 parent for better consistency
-                        start: 'top 85%',
+                        trigger: text.closest('h2'), 
+                        start: 'top 85%', // You can adjust this to "center bottom" or "top 90%" if needed
                         toggleActions: 'play none none none',
-                        // markers: true, // Uncomment for debugging
-                    }
+                        // markers: true, // Keep this uncommented for debugging if still issues
+                        // id: "text-reveal-trigger" // Add an ID for easier debugging
+                    },
+                    clearProps: 'clipPath,y' // Clear these properties after animation to prevent layout issues
                 }
             );
         });
