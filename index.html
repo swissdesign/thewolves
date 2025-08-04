@@ -54,7 +54,7 @@
             color: #EAEAEA;
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            -moz-osx-smoothing: grayscale;
         }
 
         /* WebGL Canvas for background */
@@ -89,14 +89,17 @@
         }
 
         /* Scroll-triggered text mask animation */
-        .text-reveal {
-            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-        }
-
-        /* Ensure text-reveal-wrapper behaves like a block for proper animation and content flow */
         .text-reveal-wrapper {
-            display: block; /* Changed from inline-block to block */
-            overflow: hidden; /* Ensure anything outside clip-path is hidden */
+            display: block; /* Ensure it's a block-level container */
+            overflow: hidden; /* Crucial for clip-path to work */
+            /* Add this to give it initial height, preventing collapse before JS */
+            min-height: 1.2em; /* roughly one line height, adjust if needed */
+        }
+        .text-reveal {
+            /* We will control clip-path and y entirely with GSAP, so remove initial CSS clip-path */
+            /* clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); */ 
+            display: inline-block; /* Keep as inline-block so it wraps naturally */
+            vertical-align: top; /* Important for multi-line text when used with yPercent */
         }
 
         /* Hide scrollbar but allow scrolling */
@@ -443,26 +446,26 @@
         });
 
 
-        // 2. What We Are - Text Reveal (Focus on this section)
+        // 2. What We Are - Text Reveal
         gsap.utils.toArray('.text-reveal').forEach(text => {
             gsap.fromTo(text, 
                 { 
-                    clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)', 
-                    y: '100%' // Start 100% of its own height below its final position
+                    yPercent: 100, // Use yPercent for reliable vertical positioning based on element's height
+                    clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' 
                 }, 
                 {
+                    yPercent: 0, // Animate to its natural position
                     clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-                    y: '0%', // End at its natural position
-                    duration: 1.5, // Slightly increased duration for smoother reveal
+                    duration: 1.5,
                     ease: 'power4.out',
                     scrollTrigger: {
-                        trigger: text.closest('h2'), 
-                        start: 'top 85%', // You can adjust this to "center bottom" or "top 90%" if needed
+                        trigger: text.closest('h2'),
+                        start: 'top 85%',
                         toggleActions: 'play none none none',
-                        // markers: true, // Keep this uncommented for debugging if still issues
-                        // id: "text-reveal-trigger" // Add an ID for easier debugging
+                        // markers: true, // Keep uncommented for debugging if still issues
+                        // id: "text-reveal-trigger-" + text.innerText.substring(0,10) // Unique ID for each trigger
                     },
-                    clearProps: 'clipPath,y' // Clear these properties after animation to prevent layout issues
+                    clearProps: 'clipPath,yPercent' // Clear these properties after animation
                 }
             );
         });
