@@ -471,25 +471,24 @@
             );
         });
 
-        // 3. Who Qualifies - Staggered Item Reveal (Adjusted for better reliability)
-        gsap.from(".qual-item", {
+        // 3. Who Qualifies - Staggered Item Reveal (Updated approach with gsap.to and autoAlpha)
+        gsap.set(".qual-item", { autoAlpha: 0, y: 50 }); // Set initial state using gsap.set
+
+        gsap.to(".qual-item", {
             scrollTrigger: {
                 trigger: "#who-qualifies",
-                // Adjusted start: when the top of #who-qualifies is 80% down the viewport
-                // This gives a bit more buffer than "top bottom" for elements to render
-                start: "top 80%", 
-                toggleActions: "play none none none", // Play on enter, do nothing else
+                // Try "top center" to trigger when the middle of the section is visible
+                start: "top center", 
+                toggleActions: "play none none none",
                 markers: true, // Keep enabled for debugging
                 id: "qual-items-trigger"
             },
-            opacity: 0,
-            y: 50, // Start 50px below their final position
-            duration: 0.8,
-            stagger: 0.2, // Stagger the animation of each item
-            ease: "power3.out",
-            immediateRender: false // Crucial: Don't render the 'from' state until trigger is active
+            autoAlpha: 1, // Animate to full visibility (opacity: 1, visibility: visible)
+            y: 0, // Animate to its natural y position
+            duration: 1, // Slightly increased duration for smoother effect
+            stagger: 0.15, // Slightly reduced stagger for faster reveal
+            ease: "power3.out"
         });
-
 
         // 4. Why We Exist - Pinned Scroll Narrative
         const narrativeLines = gsap.utils.toArray('.narrative-line');
