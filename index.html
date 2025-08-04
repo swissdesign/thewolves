@@ -471,22 +471,21 @@
             );
         });
 
-        // 3. Who Qualifies - Staggered Item Reveal (Updated approach with gsap.to and autoAlpha)
-        gsap.set(".qual-item", { autoAlpha: 0, y: 50 }); // Set initial state using gsap.set
+         // 3. Who Qualifies - Staggered Item Reveal (Cleaned up, markers removed)
+        gsap.set(".qual-item", { autoAlpha: 0, y: 50 }); 
 
         gsap.to(".qual-item", {
             scrollTrigger: {
                 trigger: "#who-qualifies",
-                // Try "top center" to trigger when the middle of the section is visible
                 start: "top center", 
                 toggleActions: "play none none none",
-                markers: true, // Keep enabled for debugging
-                id: "qual-items-trigger"
+                // markers: true, // REMOVE OR COMMENT OUT THIS LINE
+                // id: "qual-items-trigger" // REMOVE OR COMMENT OUT THIS LINE
             },
-            autoAlpha: 1, // Animate to full visibility (opacity: 1, visibility: visible)
-            y: 0, // Animate to its natural y position
-            duration: 1, // Slightly increased duration for smoother effect
-            stagger: 0.15, // Slightly reduced stagger for faster reveal
+            autoAlpha: 1, 
+            y: 0, 
+            duration: 1, 
+            stagger: 0.15, 
             ease: "power3.out"
         });
 
