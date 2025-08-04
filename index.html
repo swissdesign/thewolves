@@ -471,14 +471,14 @@
             );
         });
 
-        // 3. Who Qualifies - Staggered Item Reveal
+       // 3. Who Qualifies - Staggered Item Reveal (Focus here)
         gsap.from(".qual-item", {
             scrollTrigger: {
                 trigger: "#who-qualifies",
-                start: "top 70%", // Adjust if needed, e.g., "top center"
+                start: "top 70%", // This means when the top of #who-qualifies is 70% down the viewport
                 toggleActions: "play none none none",
-                // markers: true, // Enable for debugging to see trigger points
-                // id: "qual-items-trigger"
+                markers: true, // <--- IMPORTANT: UNCOMMENT THIS LINE FOR DEBUGGING
+                id: "qual-items-trigger" // <--- IMPORTANT: UNCOMMENT THIS LINE FOR DEBUGGING
             },
             opacity: 0,
             y: 50,
