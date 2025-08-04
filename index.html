@@ -471,20 +471,23 @@
             );
         });
 
-        // 3. Who Qualifies - Staggered Item Reveal (Focus here)
+        // 3. Who Qualifies - Staggered Item Reveal (Adjusted for better reliability)
         gsap.from(".qual-item", {
             scrollTrigger: {
                 trigger: "#who-qualifies",
-                start: "top 70%", // This means when the top of #who-qualifies is 70% down the viewport
-                toggleActions: "play none none none",
-                markers: true,
-                id: "qual-items-trigger" 
+                // Adjusted start: when the top of #who-qualifies is 80% down the viewport
+                // This gives a bit more buffer than "top bottom" for elements to render
+                start: "top 80%", 
+                toggleActions: "play none none none", // Play on enter, do nothing else
+                markers: true, // Keep enabled for debugging
+                id: "qual-items-trigger"
             },
             opacity: 0,
-            y: 50,
+            y: 50, // Start 50px below their final position
             duration: 0.8,
-            stagger: 0.2,
-            ease: "power3.out"
+            stagger: 0.2, // Stagger the animation of each item
+            ease: "power3.out",
+            immediateRender: false // Crucial: Don't render the 'from' state until trigger is active
         });
 
 
