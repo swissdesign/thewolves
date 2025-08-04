@@ -471,13 +471,13 @@
             );
         });
 
-       // 3. Who Qualifies - Staggered Item Reveal (Focus here)
+        // 3. Who Qualifies - Staggered Item Reveal (Focus here)
         gsap.from(".qual-item", {
             scrollTrigger: {
                 trigger: "#who-qualifies",
                 start: "top 70%", // This means when the top of #who-qualifies is 70% down the viewport
                 toggleActions: "play none none none",
-                markers: true, 
+                markers: true,
                 id: "qual-items-trigger" 
             },
             opacity: 0,
@@ -486,6 +486,7 @@
             stagger: 0.2,
             ease: "power3.out"
         });
+
 
         // 4. Why We Exist - Pinned Scroll Narrative
         const narrativeLines = gsap.utils.toArray('.narrative-line');
